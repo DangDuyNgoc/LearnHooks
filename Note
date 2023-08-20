@@ -1,0 +1,73 @@
+/*
+1. useState Hook
+    Dùng khi muốn thay đổi thì giao diện tự động cập nhật 
+    Cách sử dụng:
+        import{useState} from 'react'
+
+        funcion Component() {
+            const [state, setState] = useState(initState)
+
+        }
+    useState nhận đối số là initState - giá trị khởi tạo và chỉ dùng 1 lần cho lần đầu. useState 
+    trả về một mảng gồm 2 phần tử. Phần tử đầu tiên là state, trong lần đầu tiên chạy lấy giá trị
+    initState truyền cho state. Phần tử thứ hai là một hàm, được dùng để set giá trị lại state 
+    Lưu ý: 
+        - InitState là một callback, lấy giá trị mà hàm trả về làm initState
+        - setState có thể nhận một callback, trả về cho callback một đối số là giá trị trước đó 
+            của state
+        - setState thay thế state bằng một giá trị mới
+2. useEffect Hook
+    Nhận 2 đối số, đối số thứ nhất là callback, đối số thứ hai là dependencies(không bắt buộc)
+    dependencies là một biến chứa giá trị dữ liệu, có thể được thêm từ ngoài vào hoặc có thể 
+    là state nằm trong Component
+    callback luôn được gọi khi Component mounted. Cleanup funcion luôn được gọi 
+    trước khi Component unmounted
+
+    3 trường hợp:
+        - useEffect(callback) => 
+            gọi callback mỗi khi Component re-render
+            gọi callback sau khi Component thêm element vào DOM
+        - useEffect(callback, []) => 
+            chỉ gọi callback 1 lần sau khi Component mounted
+        - useEffect(callback, [dependencies]) =>
+            callback sẽ được gọi lại mỗi khi dependencies thay đổi
+3. useLayoutEffect Hook
+    Cập nhật lại state
+    Cập nhật DOM (mutated)
+    Gọi Cleanup funcion nếu dependencies thay đổi (sync)
+    Gọi useLayoutEffect callback (sync)
+    Render lại UI
+
+    giống useEffect, mặc định dùng useEffect
+4. useRef
+    useRef là một hàm, và nhận một đối số là initialValue(bất cứ giá trị gì của js). Chỉ dùng 
+    initialValue trong lần đầu tiên khi Component được mounted. Khi Component re-render không
+    dùng lại initialValue.  Trả về một object với thuộc tính current được khởi tạo 
+    thông qua tham số truyền vào.
+    Khi dùng useRef để lưu giá trị, thì khi phải render lại một function component, 
+    giá trị đã lưu sẽ không bị thay đổi, mà vẫn giữ được giá trị đã lưu trước đó.
+5. React.memo HOC(Higher Oreder Component)
+    xử lý một component tránh re-render khi không cần thiết. Kiểm tra các props của Component sau 
+    mỗi lần re-render thay đổi hay không? Chỉ cần ít nhất một props thay đổi giá trị, thì Component
+    sẽ re-render.
+6. useCallback
+    useCallback giống như useEffect, truyền vào 2 đối số, đối số thứ nhất là callback funcion, đối 
+    số thứ hai là dependencies. 
+7. useMemo
+    lưu trữ kết quả tính toán giữa các lần re-render
+    useMemo giống như useCallback và useEffect, truyền vào 2 đối số, đối số thứ nhất là callback funcion, đối 
+    số thứ hai là dependencies. 
+
+8. useReducer
+    nhận vào hai đối số: reducer và initialState
+    reducer funcion nhận 2 đối số: state và actions arguments. Mỗi khi call reducer, dựa vào state và 
+    actions hiện tại để trả về state mới. State ban đầu sẽ được khởi tạo từ initialState
+
+9. useContext
+    Đơn giản hoá việc truyền dữ liệu từ component cha xuống component con mà không cần sử dụng tới
+    props. 
+
+10. useImperativeHandle
+    trong thẻ video có trong props controls, không sử dụng, vì khi custom lại sẽ không được
+    
+*/
